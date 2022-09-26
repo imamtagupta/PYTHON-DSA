@@ -79,8 +79,8 @@
 # # *Output:*
 # # True
 # # Runtime: 0.0
-
-
+#
+#
 # #   ---------------------------------------
 # #   ------ Patterns using recursion ______
 # #   ---------------------------------------
@@ -198,7 +198,7 @@
 #
 # unsortedArr3 = [7, 9, 10, 2, 1]
 # print(mergeSort(unsortedArr3))
-
+#
 # def mergeSortInPlace(arr, s=0, e=0):
 #     def merge(arr, s, m, e):
 #         mix = []
@@ -233,8 +233,8 @@
 # unsortedArr3 = [7, 9, 10, 2, 1]
 # mergeSortInPlace(unsortedArr3, e=len(unsortedArr3))
 # print(unsortedArr3)
-
-
+#
+#
 # def quickSort(arr, n):
 #     """
 #     arr: An unsorted list
@@ -271,8 +271,8 @@
 #     #     return arr
 #     quick(0, n - 1)
 #     return arr
-
-
+#
+#
 # unsortedArr4 = [7, 9, 3, 1, 2]
 # print(quickSort(unsortedArr4, 5))
-
+#
