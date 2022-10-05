@@ -276,3 +276,257 @@
 # unsortedArr4 = [7, 9, 3, 1, 2]
 # print(quickSort(unsortedArr4, 5))
 #
+
+
+# MAZE PROBLEMS #
+
+# 1) Let's have 3X3 matrix as maze and we are trying to get count of  all possible ways to reach the last box
+# Note : we can only traverse through ->R and ->D direction
+# def numberOfWaysToReachDestination(r, c):
+#     if r == 3 or c == 3:
+#         return 1
+#     return numberOfWaysToReachDestination(r + 1, c) + numberOfWaysToReachDestination(r, c + 1)
+#
+#
+# print(numberOfWaysToReachDestination(2, 2))
+
+
+# # 2) get all possible ways to reach the last box
+# Note : we can only traverse through ->R and ->D direction
+# def waysToReachDestination(r, c, p=''):
+#     if r == 3 and c == 3:
+#         print(p)
+#         return
+#     if r < 3:
+#         waysToReachDestination(r + 1, c, p + "D")
+#     if c < 3:
+#         waysToReachDestination(r, c + 1, p + "R")
+#
+#
+# waysToReachDestination(1, 1)
+
+
+# # 3) get all possible ways to reach the last box in list
+# Note : we can only traverse through ->R and ->D direction
+# def waysToReachDestination(r, c, p='', lst=[]):
+#     if r == 3 and c == 3:
+#         lst += [p]
+#         return
+#     if r < 3:
+#         waysToReachDestination(r + 1, c, p + "D", lst)
+#     if c < 3:
+#         waysToReachDestination(r, c + 1, p + "R", lst)
+#
+#     return lst
+#
+#
+# print(waysToReachDestination(1, 1))
+
+
+# # 4) get all possible ways to reach the last box in list
+# # Note : we can traverse in all direction
+# def waysToReachDestinationWithDiags(r, c, p='', lst=[]):
+#     if r == 3 and c == 3:
+#         lst += [p]
+#         return
+#     if r < 3 and c < 3:
+#         waysToReachDestinationWithDiags(r + 1, c + 1, p + "M", lst)
+#     if r < 3:
+#         waysToReachDestinationWithDiags(r + 1, c, p + "D", lst)
+#     if c < 3:
+#         waysToReachDestinationWithDiags(r, c + 1, p + "R", lst)
+#
+#     return lst
+#
+#
+# print(waysToReachDestinationWithDiags(1,1))
+
+
+# # 5) walk on maze having obstacles
+# # Note : we can traverse in r,d direction
+#
+# def mazeWithObstacle(r, c, maze, p=""):
+#     if r == len(maze[0]) - 1 and c == len(maze) - 1:
+#         print(p)
+#         return
+#     if not maze[r][c]:
+#         return
+#     if r < len(maze[0]) - 1:
+#         mazeWithObstacle(r + 1, c, maze, p + "D")
+#     if c < len(maze) - 1:
+#         mazeWithObstacle(r, c + 1, maze, p + "R")
+#
+#
+#
+# board = [
+#     [True, True, True],
+#     [True, False, True],
+#     [True, True, True]
+# ]
+# mazeWithObstacle(0, 0, board)
+
+
+# # 6) walk on maze having obstacles
+# # Note : we can traverse in all direction
+#
+# def mazeWithObstacle(r, c, maze, p=""):
+#     if r == len(maze[0]) - 1 and c == len(maze) - 1:
+#         print(p)
+#         return
+#     if not maze[r][c]:
+#         return
+#     if r < len(maze[0]) - 1 and c < len(maze) - 1:
+#         mazeWithObstacle(r + 1, c + 1, maze, p + "M")
+#     if r < len(maze[0]) - 1:
+#         mazeWithObstacle(r + 1, c, maze, p + "D")
+#     if c < len(maze) - 1:
+#         mazeWithObstacle(r, c + 1, maze, p + "R")
+#
+#
+# board = [
+#     [True, True, True],
+#     [True, False, True],
+#     [True, True, True]
+# ]
+# mazeWithObstacle(0, 0, board)
+
+
+# Backtracking : what if I have not taken this path what would my array look like
+#                +
+#                changes by that recursion calls should also be not available!
+
+
+# # 7) walk on maze
+# # Note : we can traverse in all (L, R , U, D)direction
+#
+# def travelInMaze(r, c, maze, p=""):
+#     if r == len(maze[0]) - 1 and c == len(maze) - 1:
+#         print(p)
+#         return
+#     if not maze[r][c]:
+#         return
+#     maze[r][c] = False
+#     if r < len(maze[0]) - 1 and c < len(maze) - 1:
+#         travelInMaze(r + 1, c + 1, maze, p + "M")
+#     if r < len(maze[0]) - 1:
+#         travelInMaze(r + 1, c, maze, p + "D")
+#     if c < len(maze) - 1:
+#         travelInMaze(r, c + 1, maze, p + "R")
+#     if c > 0:
+#         travelInMaze(r, c - 1, maze, p + "L")
+#     if r > 0:
+#         travelInMaze(r - 1, c, maze, p + "U")
+#     maze[r][c] = True
+#
+#
+# board = [
+#     [True, True, True],
+#     [True, True, True],
+#     [True, True, True]
+# ]
+# travelInMaze(0, 0, board)
+#
+#
+# # 8) walk on maze, print all possible path with number on matrix
+# # Note : we can traverse in all (L, R , U, D)direction
+#
+# def travelInMaze(r, c, maze, p="", step=1):
+#     if r == len(maze[0]) - 1 and c == len(maze) - 1:
+#         maze[r][c] = step
+#         for arr in maze:
+#             print(arr)
+#         print(p)
+#         print()  # linebreak
+#         return
+#
+#     if maze[r][c]:
+#         return
+#
+#     maze[r][c] = step
+#     if r < len(maze[0]) - 1 and c < len(maze) - 1:
+#         travelInMaze(r + 1, c + 1, maze, p + "M", step+1)
+#     if r < len(maze[0]) - 1:
+#         travelInMaze(r + 1, c, maze, p + "D", step+1)
+#     if c < len(maze) - 1:
+#         travelInMaze(r, c + 1, maze, p + "R", step+1)
+#     if c > 0:
+#         travelInMaze(r, c - 1, maze, p + "L", step+1)
+#     if r > 0:
+#         travelInMaze(r - 1, c, maze, p + "U", step+1)
+#     maze[r][c] = 0
+#
+#
+# board = [
+#     [True, True, True],
+#     [True, True, True],
+#     [True, True, True]
+# ]
+# path = [[0 for x in range(len(board[0]))] for y in range(len(board))]
+# travelInMaze(1, 1, path)
+
+
+## CHECK IF REDUNDANT BRACKETS ARE PRESENT OR NOT?
+# def checkRedundantBrackets(expression) :
+#     s = []
+#     for ex in expression:
+#         if ex in "+-/*":
+#             s.append(ex)
+#         elif ex == '{':
+#             if s and s[-1] == '{':
+#                 return True
+#             s.append(ex)
+#         elif ex == '[':
+#             if s and s[-1] == '[':
+#                 return True
+#             s.append(ex)
+#         elif ex == '(':
+#             if s and s[-1] == '(':
+#                 return True
+#             s.append(ex)
+#         elif ex == '}':
+#             if s and s[-1] != '{':
+#                 return True
+#             s.pop()
+#         elif ex == ']':
+#             if s and s[-1] != '[':
+#                 return True
+#             s.pop()
+#         elif ex == ')':
+#             if s and s[-1] == '(':
+#                 return True
+#             while s[-1] in "+-/*":
+#                 s.pop()
+#     # if not s:
+#     #     return True
+#     return False
+#
+#
+# # main
+# expression = "(x+y*(a-b))".strip()
+#
+# if checkRedundantBrackets(expression):
+#     print("true")
+#
+# else:
+#     print("false")
+
+
+# # Find the stockspan as number of bars from current(including current) which are lower
+# def stockSpan(price, n):
+#     ans = [0] * n
+#     ans[0] = 1
+#     # Calculate span values for rest
+#     # of the elements
+#     for i in range(1, n):
+#         counter = 1
+#
+#         while ((i - counter) >= 0 and
+#                price[i] >= price[i - counter]):
+#             counter += ans[i - counter]
+#         ans[i] = counter
+#     return ans
+#
+#
+# print(stockSpan([60, 70, 80, 100, 90, 75, 80, 120], 8))
+
+
